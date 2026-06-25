@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title_home">Home | AHU English Club</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="img/favicon.ico" type="image/favicon.ico-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10B981',   // Mint green
+                        secondary: '#D97706', // Warm amber
+                        accent: '#0F172A',    // Charcoal text
+                        purple: '#064E3B',    // Deep emerald
+                        darkpurple: '#064E3B',
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 2s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+</head>
+<body class="dark:bg-darkmode dark:text-light">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md dark:bg-card-dark sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img src="img/favicon.png" height="60px" width="80px"></img>
+                    <span class="text-xl font-bold text-accent dark:text-purple">AHU English Club</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="home">Home</a>
+                    <div class="relative group">
+                        <button class="nav-link text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium flex items-center">
+                            <span data-i18n="materials">Materials</span> <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white dark:bg-card-dark rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <a href="materials.html#grammar" class="block px-4 py-2 text-black-700 hover:bg-primary hover:text-white dark:text-black-300 dark:hover:bg-purple" data-i18n="grammar">Grammar</a>
+                            <a href="materials.html#vocabulary" class="block px-4 py-2 text-black-700 hover:bg-primary hover:text-white dark:text-black-300 dark:hover:bg-purple" data-i18n="vocabulary">Vocabulary</a>
+                            <a href="materials.html#pronunciation" class="block px-4 py-2 text-black-700 hover:bg-primary hover:text-white dark:text-black-300 dark:hover:bg-purple" data-i18n="pronunciation">Pronunciation</a>
+                        </div>
+                    </div>
+                    <a href="#about" class="nav-link text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="about">About</a>
+                    <a href="#events" class="nav-link text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="events">Events</a>
+                    <a href="#contact" class="nav-link text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="contact">Contact</a>
+                     
+                     <!-- Language Toggle -->
+                    <button id="language-toggle" class="language-toggle">
+                        <span class="en-text">EN</span>
+                        <i class="fas fa-exchange-alt"></i>
+                        <span class="ar-text">AR</span>
+                    </button>
+  
+                 
+                     
+                    <!-- Dark Mode Toggle -->
+                    <div class="flex items-center">
+                        <span class="mr-2 text-sm text-black-600 dark:text-black-300"><i class="fas fa-sun"></i></span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none">
+                            <input type="checkbox" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                        <span class="text-sm text-black-600 dark:text-black-300"><i class="fas fa-moon"></i></span>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="hamburger-menu text-black-700 dark:text-black-300 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-card-dark shadow-lg">
+            <div class="container mx-auto px-4 py-2">
+                <a href="#home" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="home">Home</a>
+                <div class="py-2">
+                    <a href="materials.html">
+                     <button class="flex items-center justify-between w-full text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium">
+                        <span data-i18n="materials">Materials</span>
+                     </button>
+                    </a>
+                    <div class="pl-4 mt-1 hidden">
+                        <a href="materials.html#grammar" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple" data-i18n="grammar">Grammar</a>
+                        <a href="materials.html#vocabulary" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple" data-i18n="vocabulary">Vocabulary</a>
+                        <a href="materials.html#pronunciation" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple" data-i18n="pronunciation">Pronunciation</a>
+                    </div>
+                </div>
+                <a href="#about" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="about">About</a>
+                <a href="#events" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="events">Events</a>
+                <a href="#contact" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="contact">Contact</a>
+                
+                <div class="flex items-center justify-between py-2">
+                    <span class="text-black-700 dark:text-black-300" data-i18n="language">Language:</span>
+                    <button id="mobile-language-toggle" class="language-toggle">
+                        <span class="en-text">EN</span>
+                        <i class="fas fa-exchange-alt"></i>
+                        <span class="ar-text">AR</span>
+                    </button>
+                </div>
+                
+                <!-- Language Toggle Mobile -->
+                <div class="flex items-center justify-between py-2">
+                    <span class="text-black-700 dark:text-black-300" data-i18n="theme">Theme:</span>
+                    <div class="flex items-center">
+                        <span class="mr-2 text-sm text-black-600 dark:text-black-300"><i class="fas fa-sun"></i></span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none">
+                            <input type="checkbox" id="toggle-mobile" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="toggle-mobile" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                        <span class="text-sm text-black-600 dark:text-black-300"><i class="fas fa-moon"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6" data-i18n="welcome_title">Welcome to AHU English Club</h1>
+            <p class="text-xl max-w-3xl mx-auto mb-8" data-i18n="welcome_text">Join our community to improve your English skills through interactive learning, cultural exchange, and fun activities.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="materials.html" class="bg-primary hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-full transition duration-300" data-i18n="explore_materials">Explore Materials</a>
+                <a href="#events" class="bg-transparent hover:bg-secondary/10 border-2 border-secondary text-secondary font-bold py-3 px-6 rounded-full transition duration-300" data-i18n="upcoming_events">Upcoming Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-accent dark:text-purple" data-i18n="why_join">Why Join Our Club?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg p-8 shadow-md transition-all duration-300 card-hover">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mb-6 mx-auto">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center" data-i18n="feature1_title">Comprehensive Resources</h3>
+                    <p class="text-black-600 dark:text-black-300 text-center" data-i18n="feature1_text">Access our extensive library of grammar guides, vocabulary lists, pronunciation exercises, and more.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg p-8 shadow-md transition-all duration-300 card-hover">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mb-6 mx-auto">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center" data-i18n="feature2_title">Supportive Community</h3>
+                    <p class="text-black-600 dark:text-black-300 text-center" data-i18n="feature2_text">Connect with fellow learners and volunteers in a friendly, encouraging environment.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg p-8 shadow-md transition-all duration-300 card-hover">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mb-6 mx-auto">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center" data-i18n="feature3_title">Regular Events</h3>
+                    <p class="text-black-600 dark:text-black-300 text-center" data-i18n="feature3_text">Participate in conversation clubs, movie nights, workshops, and cultural exchange activities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Materials Preview -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-accent dark:text-purple" data-i18n="popular_materials">Popular Learning Materials</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Material 1 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white text-5xl">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-primary text-white text-xs px-3 py-1 rounded-full" data-i18n="grammar">Grammar</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="beginner">Beginner</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="material1_title">English Tenses Guide</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="material1_desc">Master all 12 English tenses with clear explanations and practical examples.</p>
+                        <a href="materials.html#grammar" class="text-accent dark:text-purple font-medium hover:underline" data-i18n="view_resource">View Resource</a>
+                    </div>
+                </div>
+                
+                <!-- Material 2 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-purple to-darkpurple flex items-center justify-center text-white text-5xl">
+                        <i class="fas fa-spell-check"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-secondary text-white text-xs px-3 py-1 rounded-full" data-i18n="vocabulary">Vocabulary</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="intermediate">Intermediate</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="material2_title">Academic Word List</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="material2_desc">Essential vocabulary for academic reading and writing across disciplines.</p>
+                        <a href="materials.html#vocabulary" class="text-accent dark:text-purple font-medium hover:underline" data-i18n="view_resource">View Resource</a>
+                    </div>
+                </div>
+                
+                <!-- Material 3 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-secondary to-accent flex items-center justify-center text-white text-5xl">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-purple text-white text-xs px-3 py-1 rounded-full" data-i18n="pronunciation">Pronunciation</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="all_levels">All Levels</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="material3_title">IPA Pronunciation Guide</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="material3_desc">Learn to pronounce English sounds correctly using the International Phonetic Alphabet.</p>
+                        <a href="materials.html#pronunciation" class="text-accent dark:text-purple font-medium hover:underline" data-i18n="view_resource">View Resource</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="materials.html" class="inline-block bg-accent hover:bg-darkpurple text-white font-bold py-3 px-6 rounded-full transition duration-300" data-i18n="view_all_materials">View All Materials</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section id="events" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-accent dark:text-purple" data-i18n="upcoming_events">Upcoming Events</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Event 1 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-primary to-purple flex items-center justify-center text-white text-5xl">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-primary text-white text-xs px-3 py-1 rounded-full" data-i18n="nothing here for now :/"></span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n=" "></span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3"data-i18n="noevent_title"></h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n=" ">Practice speaking English in a relaxed environment with native speakers and fellow learners.</p>
+                        <div class="flex justify-between items-center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section id="about" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-accent dark:text-purple" data-i18n="about_title">About AHU English Club</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="our_mission">Our Mission</h3>
+                    <p class="text-black-600 dark:text-black-300 mb-6" data-i18n="mission_text1">
+                        The AHU English Club was founded in 2024 with the goal of creating a supportive environment for students to improve their English language skills. 
+                        We believe that language learning should be engaging, interactive, and connected to real-world communication.
+                    </p>
+                    <p class="text-black-600 dark:text-black-300 mb-6" data-i18n="mission_text2">
+                        Our club organizes regular activities, provides learning resources, and fosters cultural exchange between students from different backgrounds.
+                    </p>
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="what_we_offer">What We Offer</h3>
+                    <ul class="space-y-3 text-black-600 dark:text-black-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mr-2 mt-1"></i>
+                            <span data-i18n="offer1">Weekly conversation practice with native speakers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mr-2 mt-1"></i>
+                            <span data-i18n="offer2">Comprehensive learning materials for all levels</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mr-2 mt-1"></i>
+                            <span data-i18n="offer3">Cultural exchange events and workshops</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mr-2 mt-1"></i>
+                            <span data-i18n="offer4">Preparation for English proficiency tests</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-primary to-secondary rounded-lg overflow-hidden">
+                    <img src="https://static.vecteezy.com/system/resources/previews/023/803/006/non_2x/language-courses-or-school-online-distance-education-tiny-people-learning-english-with-smartphone-laptop-book-modern-flat-cartoon-style-illustration-on-white-background-vector.jpg" 
+                         alt="Students learning English" 
+                         class="w-full h-full object-cover opacity-90">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-accent dark:text-purple" data-i18n="contact_title">Contact Us</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="get_in_touch">Get In Touch</h3>
+                    <p class="text-black-600 dark:text-black-300 mb-6" data-i18n="contact_text">
+                        Have questions about our club or events? Want to join or volunteer? We'd love to hear from you!
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-primary bg-opacity-20 text-primary flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold" data-i18n="location">Location</h4>
+                                <p class="text-black-600 dark:text-black-300" data-i18n="location_text">Student Center, Room 302<br>Anhui University, Hefei</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-primary bg-opacity-20 text-primary flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope" style="color: #D97706;"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold" data-i18n="email">Email</h4>
+                                <a href="mailto:ahuwebadm@gmail.com" target="A"><p class="text-black-600 dark:text-black-300" style="text-decoration: underline;">ahuwebadm@gmail.com</p></a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-primary bg-opacity-20 text-primary flex items-center justify-center mr-4">
+                                <i class="fas fa-phone-alt"  style="color: #D97706;"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold" data-i18n="phone">Whatsapp</h4>
+                                <a href="https://chat.whatsapp.com/ImAGrWcsArYB5vA5VLJSYO" target="A"><p class="text-black-600 dark:text-black-300" style="text-decoration: underline;">Click here to join group</p></a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                             
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="img/favicon.png" height="60px" width="80px"></img>
+                        <span class="text-xl font-bold">AHU English Club</span>
+                    </div>
+                    <p class="text-black-400" data-i18n="footer_desc">Improving English skills through community, resources, and cultural exchange since 2024.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4" data-i18n="quick_links">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-black-400 hover:text-primary transition duration-300" data-i18n="home">Home</a></li>
+                        <li><a href="materials.html" class="text-black-400 hover:text-primary transition duration-300" data-i18n="materials">Materials</a></li>
+                        <li><a href="#events" class="text-black-400 hover:text-primary transition duration-300" data-i18n="events">Events</a></li>
+                        <li><a href="#about" class="text-black-400 hover:text-primary transition duration-300" data-i18n="about">About</a></li>
+                        <li><a href="#contact" class="text-black-400 hover:text-primary transition duration-300" data-i18n="contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4" data-i18n="resources">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="materials.html#grammar" class="text-black-400 hover:text-primary transition duration-300" data-i18n="grammar">Grammar</a></li>
+                        <li><a href="materials.html#vocabulary" class="text-black-400 hover:text-primary transition duration-300" data-i18n="vocabulary">Vocabulary</a></li>
+                        <li><a href="materials.html#pronunciation" class="text-black-400 hover:text-primary transition duration-300" data-i18n="pronunciation">Pronunciation</a></li>
+                        <li><a href="#" class="text-black-400 hover:text-primary transition duration-300" data-i18n="recommended_books">Recommended Books</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-black-400 mb-4 md:mb-0">© 2024 AHU English Club. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Dark Mode Toggle
+        const toggle = document.getElementById('toggle');
+        const toggleMobile = document.getElementById('toggle-mobile');
+        const html = document.documentElement;
+        
+        // Check for saved user preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            html.classList.add('dark');
+            toggle.checked = true;
+            if (toggleMobile) toggleMobile.checked = true;
+        }
+        
+        // Toggle dark mode
+        function toggleDarkMode() {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('darkMode', isDark);
+        }
+        
+        toggle.addEventListener('change', toggleDarkMode);
+        if (toggleMobile) toggleMobile.addEventListener('change', toggleDarkMode);
+        
+        // Translations dictionary
+        const translations = {
+            en: {
+                "title_home": "Home | AHU English Club",
+                "nothing here for now :/": "nothing here for now :/",
+                " ": " ",
+                "noevent_title":"There are no upcoming events",
+                "home": "Home",
+                "materials": "Materials",
+                "grammar": "Grammar",
+                "vocabulary": "Vocabulary",
+                "pronunciation": "Pronunciation",
+                "about": "About",
+                "events": "Events",
+                "contact": "Contact",
+                "welcome_title": "Welcome to AHU English Club",
+                "welcome_text": "Join our community to improve your English skills through interactive learning, cultural exchange, and fun activities.",
+                "explore_materials": "Explore Materials",
+                "upcoming_events": "Upcoming Events",
+                "why_join": "Why Join Our Club?",
+                "feature1_title": "Comprehensive Resources",
+                "feature1_text": "Access our extensive library of grammar guides, vocabulary lists, pronunciation exercises, and more.",
+                "feature2_title": "Supportive Community",
+                "feature2_text": "Connect with fellow learners and volunteers in a friendly, encouraging environment.",
+                "feature3_title": "Regular Events",
+                "feature3_text": "Participate in conversation clubs, lectures, workshops, and various activities.",
+                "popular_materials": "Popular Learning Materials",
+                "beginner": "Beginner",
+                "intermediate": "Intermediate",
+                "all_levels": "All Levels",
+                "material1_title": "English for Everyone",
+                "material1_desc": "Master all 4 English levels with clear explanations and practical examples.",
+                "material2_title": "Word List",
+                "material2_desc": "All vocabulary mentioned during our lectures are right here, alongside some academic dictionaries.",
+                "material3_title": "Self study Guides",
+                "material3_desc": "Learn to perfect English correctly using the provided guides if you have the will for it!",
+                "view_resource": "View Resource",
+                "view_all_materials": "View All Materials",
+                "conversation": "Conversation",
+                "every_wednesday": "Every Wednesday",
+                "event1_title": "English Conversation Club",
+                "event1_desc": "Practice speaking English in a relaxed environment with native speakers and fellow learners.",
+                "event1_time": "6:00 PM - 7:30 PM",
+                "movie_night": "Movie Night",
+                "june_15": "June 15",
+                "event2_title": "English Movie Night",
+                "event2_desc": "Watch and discuss an English-language film with subtitles to improve listening skills.",
+                "event2_time": "7:00 PM - 9:30 PM",
+                "workshop": "Workshop",
+                "june_22": "June 22",
+                "event3_title": "Academic Writing Workshop",
+                "event3_desc": "Learn techniques for writing clear, coherent academic papers in English.",
+                "event3_time": "4:00 PM - 6:00 PM",
+                "details": "Details",
+                "view_all_events": "View All Events",
+                "about_title": "About AHU English Club",
+                "our_mission": "Our Mission",
+                "mission_text1": "The AHU English Club was founded in 2024 with the goal of creating a supportive environment for students to improve their English language skills. We believe that language learning should be engaging, interactive, and connected to real-world communication.",
+                "mission_text2": "Our club organizes regular activities, provides learning resources, and fosters cultural exchange between students from different backgrounds.",
+                "what_we_offer": "What We Offer",
+                "offer1": "Weekly conversation practice with native speakers",
+                "offer2": "Comprehensive learning materials for all levels",
+                "offer3": "Cultural exchange events and workshops",
+                "offer4": "Preparation for English proficiency tests",
+                "testimonials_title": "What Our Members Say",
+                "major_cs": "Computer Science Major",
+                "testimonial1": "\"The conversation club helped me overcome my fear of speaking English. Now I can communicate confidently with international students!\"",
+                "major_business": "Business Administration",
+                "testimonial2": "\"The grammar materials are so well-organized. I finally understand those tricky tenses that confused me for years!\"",
+                "major_ir": "International Relations",
+                "testimonial3": "\"The pronunciation guide with IPA symbols was a game-changer for me. My English sounds much more natural now.\"",
+                "contact_title": "Contact Us",
+                "get_in_touch": "Get In Touch",
+                "contact_text": "Have questions about our club or events? Want to join or volunteer? We'd love to hear from you!",
+                "location": "Location",
+                "location_text": "IT college, rooms: 103/105 and other locations based on events",
+                "email": "Email",
+                "phone": "Whatsapp",
+                "office_hours": "Office Hours",
+                "office_hours_text": "Monday-Friday: 9:00 AM - 5:00 PM",
+                "send_message": "Send Us a Message",
+                "name": "Name",
+                "subject": "Subject",
+                "message": "Message",
+                "cta_title": "Ready to Improve Your English?",
+                "cta_text": "Join our community today and take your English skills to the next level!",
+                "contact_us": "Contact Us",
+                "learn_more": "Learn More",
+                "footer_desc": "Improving English skills through community, resources, and cultural exchange since 2024.",
+                "quick_links": "Quick Links",
+                "resources": "Resources",
+                "writing_tips": "Writing Tips",
+                "recommended_books": "Recommended Books",
+                "newsletter": "Newsletter",
+                "newsletter_text": "Subscribe to get updates on events and learning resources.",
+                "privacy_policy": "Privacy Policy",
+                "terms": "Terms of Service",
+                "sitemap": "Sitemap",
+                "language": "Language",
+                "theme": "Theme"
+            },
+            ar: {
+                "title_home": "اﻟﺼﻔﺤﺔ اﻟﺮﺋﻴﺴﻴﺔ | ﻧﺎﺩﻱ اﻟﻠﻐﺔ اﻹﻧﺠﻠﻴﺰﻳﺔ ﺑﺠﺎﻣﻌﺔ AHU",
+                "home": " اﻟﺮﺋﻴﺴﻴﺔ   ",
+                "noevent_title":"لا يوجد أي أنشطة قادمة",
+                "nothing here for now :/": "لا يوجد شيء هنا",
+                " ": " ",
+                "materials": "اﻟﻤﻮاﺩ",
+                "grammar": "ﻗﻮاﻋﺪ اﻟﻠﻐﺔ",
+                "vocabulary": "اﻟﻤﻔﺮﺩاﺕ",
+                "pronunciation": "اﻟﻨﻄﻖ",
+                "about": "ﻣﻦ ﻧﺤﻦ",
+                "events": "اﻟﻔﻌﺎﻟﻴﺎﺕ",
+                "contact": "اﺗﺼﻞ ﺑﻨﺎ",
+                "welcome_title": "ﻣﺮﺣﺒًﺎ ﺑﻜﻢ ﻓﻲ ﻧﺎﺩﻱ اﻟﻠﻐﺔ اﻹﻧﺠﻠﻴﺰﻳﺔ ﺑﺠﺎﻣﻌﺔ AHU",
+                "welcome_text": "اﻧﻀﻢ ﺇﻟﻰ ﻣﺠﺘﻤﻌﻨﺎ ﻟﺘﺤﺴﻴﻦ ﻣﻬﺎﺭاﺗﻚ ﻓﻲ اﻟﻠﻐﺔ اﻹﻧﺠﻠﻴﺰﻳﺔ ﻣﻦ ﺧﻼﻝ اﻟﺘﻌﻠﻢ اﻟﺘﻔﺎﻋﻠﻲ ﻭﺗﺒﺎﺩﻝ اﻟﺜﻘﺎﻓﺎﺕ ﻭاﻷﻧﺸﻄﺔ اﻟﻤﻤﺘﻌﺔ.",
+                "explore_materials": "اﺳﺘﻜﺸﻒ اﻟﻤﻮاﺩ",
+                "upcoming_events": "اﻟﻔﻌﺎﻟﻴﺎﺕ اﻟﻘﺎﺩﻣﺔ",
+                "why_join": "ﻟﻤﺎﺫا ﺗﻨﻀﻢ ﺇﻟﻰ ﻧﺎﺩﻳﻨﺎ؟",
+                "feature1_title": "ﻣﻮاﺭﺩ ﺷﺎﻣﻠﺔ",
+                "feature1_text": "اﺣﺼﻞ ﻋﻠﻰ ﻣﻜﺘﺒﺘﻨﺎ اﻟﻮاﺳﻌﺔ ﻣﻦ ﺃﺩﻟﺔ اﻟﻘﻮاﻋﺪ ﻭﻗﻮاﺋﻢ اﻟﻤﻔﺮﺩاﺕ ﻭﺗﻤﺎﺭﻳﻦ اﻟﻨﻄﻖ ﻭاﻟﻤﺰﻳﺪ.",
+                "feature2_title": "ﻣﺠﺘﻤﻊ ﺩاﻋﻢ",
+                "feature2_text": "ﺗﻮاﺻﻞ ﻣﻊ ﺯﻣﻼء اﻟﺪﺭاﺳﺔ ﻭاﻟﻤﺘﺤﺪﺛﻴﻦ اﻷﺻﻠﻴﻴﻦ ﻓﻲ ﺑﻴﺌﺔ ﻭﺩﻳﺔ ﻭﻣﺸﺠﻌﺔ.",
+                "feature3_title": "ﻓﻌﺎﻟﻴﺎﺕ ﻣﻨﺘﻈﻤﺔ",
+                "feature3_text": "شارك في نوادي المحادثة، المحاضرات، ورش العمل، ومختلف الأنشطة.",
+                "popular_materials": "ﻣﻮاﺩ اﻟﺘﻌﻠﻢ اﻟﺸﺎﺋﻌﺔ",
+                "beginner": "ﻣﺒﺘﺪﺉ",
+                "intermediate": "ﻣﺘﻮﺳﻂ",
+                "all_levels": "ﺟﻤﻴﻊ اﻟﻤﺴﺘﻮﻳﺎﺕ",
+                "material1_title": "الإنجليزية للجميع",
+                "material1_desc": "أتقن المستويات الأربعة للإنجليزية مع شروحات واضحة وأمثلة عملية.",
+                "material2_title": "قائمة الكلمات",
+                "material2_desc": "جميع المفردات المذكورة خلال محاضراتنا هنا، جنبًا إلى جنب مع بعض القواميس الأكاديمية.",
+                "material3_title": "أدلة الدراسة الذاتية",
+                "material3_desc": "تعلم إتقان الإنجليزية باستخدام الأدلة المقدمة إذا كانت لديك الإرادة لذلك!",
+                "view_resource": "ﻋﺮﺽ اﻟﻤﻮﺭﺩ",
+                "view_all_materials": "ﻋﺮﺽ ﺟﻤﻴﻊ اﻟﻤﻮاﺩ",
+                "conversation": "ﻣﺤﺎﺩﺛﺔ",
+                "every_wednesday": "ﻛﻞ ﻳﻮﻡ ﺃﺭﺑﻌﺎء",
+                "event1_title": "ﻧﺎﺩﻱ اﻟﻤﺤﺎﺩﺛﺔ اﻹﻧﺠﻠﻴﺰﻳﺔ",
+                "event1_desc": "ﻣﺎﺭﺱ اﻟﺘﺤﺪﺙ ﺑﺎﻟﻠﻐﺔ اﻹﻧﺠﻠﻴﺰﻳﺔ ﻓﻲ ﺑﻴﺌﺔ ﻣﺮﻳﺤﺔ ﻣﻊ ﻣﺘﺤﺪﺛﻴﻦ ﺃﺻﻠﻴﻴﻦ ﻭﺯﻣﻼء اﻟﺪﺭاﺳﺔ.",
+                "event1_time": "6:00 ًﻣﺴﺎءً - 7:30 ﻣﺴﺎء",
+                "movie_night": "ﻟﻴﻠﺔ ﺃﻓﻼﻡ",
+                "june_15": "15 ﻳﻮﻧﻴﻮ",
+                "event2_title": "ﻟﻴﻠﺔ ﺃﻓﻼﻡ ﺇﻧﺠﻠﻴﺰﻳﺔ",
+                "event2_desc": "ﺷﺎﻫﺪ ﻭﻧﺎﻗﺶ ﻓﻴﻠﻤًﺎ ﺑﺎﻟﻠﻐﺔ اﻹﻧﺠﻠﻴﺰﻳﺔ ﻣﻊ ﺗﺮﺟﻤﺔ ﻟﺘﺤﺴﻴﻦ ﻣﻬﺎﺭاﺕ اﻻﺳﺘﻤﺎﻉ.",
+                "event2_time": "7:00 ًﻣﺴﺎءً - 9:30 ﻣﺴﺎء",
+                "workshop": "ﻭﺭﺷﺔ ﻋﻤﻞ",
+                "june_22": "22 ﻳﻮﻧﻴﻮ",
+                "event3_title": "ﻭﺭﺷﺔ اﻟﻜﺘﺎﺑﺔ اﻷﻛﺎﺩﻳﻤﻴﺔ",
+                "event3_desc": "ﺗﻌﻠﻢ ﺗﻘﻨﻴﺎﺕ ﻛﺘﺎﺑﺔ اﻷﻭﺭاﻕ اﻷﻛﺎﺩﻳﻤﻴﺔ اﻟﻮاﺿﺤﺔ ﻭاﻟﻤﺘﻤﺎﺳﻜﺔ ﺑﺎﻟﻠﻐﺔ اﻹﻧﺠﻠﻴﺰﻳﺔ.",
+                "event3_time": "4:00 ًﻣﺴﺎءً - 6:00 ﻣﺴﺎء",
+                "details": "اﻟﺘﻔﺎﺻﻴﻞ",
+                "view_all_events": "ﻋﺮﺽ ﺟﻤﻴﻊ اﻟﻔﻌﺎﻟﻴﺎﺕ",
+                "about_title": "ﻋﻦ ﻧﺎﺩﻱ اﻟﻠﻐﺔ اﻹﻧﺠﻠﻴﺰﻳﺔ",
+                "our_mission": "ﻣﻬﻤﺘﻨﺎ",
+                "mission_text1": "ﺗﺄﺳﺲ ﻧﺎﺩﻱ اﻟﻠﻐﺔ اﻹﻧﺠﻠﻴﺰﻳﺔ ﺑﺠﺎﻣﻌﺔ AHU ﻓﻲ ﻋﺎﻡ 2024 ﺑﻬﺪﻑ ﺇﻧﺸﺎء ﺑﻴﺌﺔ ﺩاﻋﻤﺔ ﻟﻠﻄﻼﺏ ﻟﺘﺤﺴﻴﻦ ﻣﻬﺎﺭاﺗﻬﻢ ﻓﻲ اﻟﻠﻐﺔ اﻹﻧﺠﻠﻴﺰﻳﺔ. ﻧﺆﻣﻦ ﺃﻥ ﺗﻌﻠﻢ اﻟﻠﻐﺔ ﻳﺠﺐ ﺃﻥ ﻳﻜﻮﻥ ﺗﻔﺎﻋﻠﻴًﺎ ﻭﺟﺬاﺑًﺎ ﻭﻣﺮﺗﺒﻄًﺎ ﺑﺎﻟﺘﻮاﺻﻞ ﻓﻲ اﻟﻌﺎﻟﻢ اﻟﺤﻘﻴﻘﻲ.",
+                "mission_text2": "ﻳﻨﻈﻢ ﻧﺎﺩﻳﻨﺎ ﺃﻧﺸﻄﺔ ﻣﻨﺘﻈﻤﺔ، ﻭﻳﻮﻓﺮ ﻣﻮاﺭﺩ ﺗﻌﻠﻴﻤﻴﺔ، ﻭﻳﻌﺰﺯ ﺗﺒﺎﺩﻝ اﻟﺜﻘﺎﻓﺎﺕ ﺑﻴﻦ اﻟﻄﻼﺏ ﻣﻦ ﺧﻠﻔﻴﺎﺕ ﻣﺨﺘﻠﻔﺔ.",
+                "what_we_offer": "ﻣﺎ ﻧﻘﺪﻣﻪ",
+                "offer1": "ﻣﻤﺎﺭﺳﺔ ﻣﺤﺎﺩﺛﺔ ﺃﺳﺒﻮﻋﻴﺔ ﻣﻊ ﻣﺘﺤﺪﺛﻴﻦ ﺃﺻﻠﻴﻴﻦ",
+                "offer2": "ﻣﻮاﺩ ﺗﻌﻠﻴﻤﻴﺔ ﺷﺎﻣﻠﺔ ﻟﺠﻤﻴﻊ اﻟﻤﺴﺘﻮﻳﺎﺕ",
+                "offer3": "ﻓﻌﺎﻟﻴﺎﺕ ﻭﻭﺭﺵ ﻋﻤﻞ ﻟﺘﺒﺎﺩﻝ اﻟﺜﻘﺎﻓﺎﺕ",
+                "offer4": "ﺗﺤﻀﻴﺮ ﻻﺧﺘﺒﺎﺭاﺕ اﻟﻜﻔﺎءﺓ اﻹﻧﺠﻠﻴﺰﻳﺔ",
+                "testimonials_title": "ﻣﺎ ﻳﻘﻮﻟﻪ ﺃﻋﻀﺎﺅﻧﺎ",
+                "major_cs": "ﺗﺨﺼﺺ ﻋﻠﻮﻡ اﻟﺤﺎﺳﻮﺏ",
+                "testimonial1": "\"ﺳﺎﻋﺪﻧﻲ ﻧﺎﺩﻱ اﻟﻤﺤﺎﺩﺛﺔ ﻓﻲ اﻟﺘﻐﻠﺐ ﻋﻠﻰ ﺧﻮﻓﻲ ﻣﻦ اﻟﺘﺤﺪﺙ ﺑﺎﻟﻠﻐﺔ اﻹﻧﺠﻠﻴﺰﻳﺔ. اﻵﻥ ﻳﻤﻜﻨﻨﻲ اﻟﺘﻮاﺻﻞ ﺑﺜﻘﺔ ﻣﻊ اﻟﻄﻼﺏ اﻟﺪﻭﻟﻴﻴﻦ!\"",
+                "major_business": "ﺇﺩاﺭﺓ اﻷﻋﻤﺎﻝ",
+                "testimonial2": "\"ﻣﻮاﺩ اﻟﻘﻮاﻋﺪ ﻣﻨﻈﻤﺔ ﺑﺸﻜﻞ ﺟﻴﺪ. ﺃﺧﻴﺮًا ﻓﻬﻤﺖ ﺗﻠﻚ اﻷﺯﻣﻨﺔ اﻟﺘﻲ ﺣﻴﺮﺗﻨﻲ ﻟﺴﻨﻮاﺕ!\"",
+                "major_ir": "اﻟﻌﻼﻗﺎﺕ اﻟﺪﻭﻟﻴﺔ",
+                "testimonial3": "\"ﻛﺎﻥ ﺩﻟﻴﻞ اﻟﻨﻄﻖ ﻣﻊ ﺭﻣﻮﺯ IPA ﻧﻘﻄﺔ ﺗﺤﻮﻝ ﺑﺎﻟﻨﺴﺒﺔ ﻟﻲ. ﻟﻐﺘﻲ اﻹﻧﺠﻠﻴﺰﻳﺔ ﺗﺒﺪﻭ ﺃﻛﺜﺮ ﻃﺒﻴﻌﻴﺔ اﻵﻥ.\"",
+                "contact_title": "اﺗﺼﻞ ﺑﻨﺎ",
+                "get_in_touch": "ﺗﻮاﺻﻞ ﻣﻌﻨﺎ",
+                "contact_text": "ﻫﻞ ﻟﺪﻳﻚ ﺃﺳﺌﻠﺔ ﻋﻦ ﻧﺎﺩﻳﻨﺎ ﺃﻭ ﻓﻌﺎﻟﻴﺎﺗﻨﺎ؟ ﺗﺮﻏﺐ ﻓﻲ اﻻﻧﻀﻤﺎﻡ ﺃﻭ اﻟﺘﻄﻮﻉ؟ ﻧﺤﻦ ﻧﺤﺐ ﺃﻥ ﻧﺴﻤﻊ ﻣﻨﻚ!",
+                "location": "اﻟﻤﻮﻗﻊ",
+                "location_text": "كلية تقنية المعلومات، الغرف: 103/105 ومواقع أخرى حسب الفعاليات",
+                "email": "اﻟﺒﺮﻳﺪ اﻹﻟﻜﺘﺮﻭﻧﻲ",
+                "phone": "واتساب",
+                "office_hours": "ﺳﺎﻋﺎﺕ اﻟﻌﻤﻞ",
+                "office_hours_text": "الاثنين - الجمعة: 9:00 صباحًا - 5:00 مساءً",
+                "send_message": "ﺃﺭﺳﻞ ﻟﻨﺎ ﺭﺳﺎﻟﺔ",
+                "name": "اﻻﺳﻢ",
+                "subject": "اﻟﻤﻮﺿﻮﻉ",
+                "message": "اﻟﺮﺳﺎﻟﺔ",
+                "cta_title": "ﻫﻞ ﺃﻧﺖ ﻣﺴﺘﻌﺪ ﻟﺘﺤﺴﻴﻦ ﻟﻐﺘﻚ اﻹﻧﺠﻠﻴﺰﻳﺔ؟",
+                "cta_text": "اﻧﻀﻢ ﺇﻟﻰ ﻣﺠﺘﻤﻌﻨﺎ اﻟﻴﻮﻡ ﻭاﺭﻓﻊ ﻣﻬﺎﺭاﺗﻚ ﻓﻲ اﻟﻠﻐﺔ اﻹﻧﺠﻠﻴﺰﻳﺔ ﺇﻟﻰ اﻟﻤﺴﺘﻮﻯ اﻟﺘﺎﻟﻲ!",
+                "contact_us": "اﺗﺼﻞ ﺑﻨﺎ",
+                "learn_more": "اﻋﺮﻑ اﻟﻤﺰﻳﺪ",
+                "footer_desc": "تحسين مهارات اللغة الإنجليزية من خلال المجتمع والموارد وتبادل الثقافات منذ عام 2024.",
+                "quick_links": "ﺭﻭاﺑﻂ ﺳﺮﻳﻌﺔ",
+                "resources": "اﻟﻤﻮاﺭﺩ",
+                "writing_tips": "ﻧﺼﺎﺋﺢ اﻟﻜﺘﺎﺑﺔ",
+                "recommended_books": "ﻛﺘﺐ ﻣﻮﺻﻰ ﺑﻬﺎ",
+                "newsletter": "اﻟﻨﺸﺮﺓ اﻹﺧﺒﺎﺭﻳﺔ",
+                "newsletter_text": "اﺷﺘﺮﻙ ﻟﻠﺤﺼﻮﻝ ﻋﻠﻰ ﺗﺤﺪﻳﺜﺎﺕ ﺣﻮﻝ اﻟﻔﻌﺎﻟﻴﺎﺕ ﻭﻣﻮاﺭﺩ اﻟﺘﻌﻠﻢ.",
+                "privacy_policy": "ﺳﻴﺎﺳﺔ اﻟﺨﺼﻮﺻﻴﺔ",
+                "terms": "ﺷﺮﻭﻁ اﻟﺨﺪﻣﺔ",
+                "sitemap": "ﺧﺮﻳﻄﺔ اﻟﻤﻮﻗﻊ",
+                "language": "اﻟﻠﻐﺔ",
+                "theme": "اﻟﺴﻤﺔ"
+            }
+        };
+
+        // Language Toggle
+        const languageToggle = document.getElementById('language-toggle');
+        const mobileLanguageToggle = document.getElementById('mobile-language-toggle');
+        
+        function toggleLanguage() {
+            const currentLang = html.getAttribute('lang') || 'en';
+            const newLang = currentLang === 'en' ? 'ar' : 'en';
+            
+            html.setAttribute('lang', newLang);
+            localStorage.setItem('preferredLanguage', newLang);
+            
+            // Update UI elements
+            updateUITexts(newLang);
+            
+            // Load Arabic font if needed
+            if (newLang === 'ar') {
+                const link = document.createElement('link');
+                link.href = 'https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap';
+                link.rel = 'stylesheet';
+                document.head.appendChild(link);
+            }
+        }
+        
+        function updateUITexts(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const localized = translations[lang] && translations[lang][key];
+                const fallbackEn = translations.en && translations.en[key];
+                if (localized && localized.trim() !== '') {
+                    el.textContent = localized;
+                } else if (fallbackEn) {
+                    el.textContent = fallbackEn;
+                }
+            });
+        }
+        
+        languageToggle.addEventListener('click', toggleLanguage);
+        if (mobileLanguageToggle) {
+            mobileLanguageToggle.addEventListener('click', toggleLanguage);
+        }
+        
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const preferredLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            html.setAttribute('lang', preferredLanguage);
+            updateUITexts(preferredLanguage);
+            
+            // Load Arabic font if needed
+            if (preferredLanguage === 'ar') {
+                const link = document.createElement('link');
+                link.href = 'https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap';
+                link.rel = 'stylesheet';
+                document.head.appendChild(link);
+            }
+        });
+        
+        // Search functionality
+        const searchData = [
+            { title: "English Tenses Guide", category: "Grammar", link: "materials.html#grammar" },
+            { title: "Conditionals Explained", category: "Grammar", link: "materials.html#grammar" },
+            { title: "Articles (A/An/The)", category: "Grammar", link: "materials.html#grammar" },
+            { title: "Academic Word List", category: "Vocabulary", link: "materials.html#vocabulary" },
+            { title: "Business English Vocabulary", category: "Vocabulary", link: "materials.html#vocabulary" },
+            { title: "Common English Idioms", category: "Vocabulary", link: "materials.html#vocabulary" },
+            { title: "IPA Pronunciation Guide", category: "Pronunciation", link: "materials.html#pronunciation" },
+            { title: "American Accent Training", category: "Pronunciation", link: "materials.html#pronunciation" },
+            { title: "Tricky Sound Pairs", category: "Pronunciation", link: "materials.html#pronunciation" },
+            { title: "Conversation Club", category: "Event", link: "#events" },
+            { title: "Movie Night", category: "Event", link: "#events" },
+            { title: "Academic Writing Workshop", category: "Event", link: "#events" }
+        ];
+        
+        function highlightText(text, query) {
+            if (!query) return text;
+            const regex = new RegExp(query, 'gi');
+            return text.replace(regex, match => `<span class="search-highlight">${match}</span>`);
+        }
+        
+        function displaySearchResults(query, resultsContainer, inputField) {
+            resultsContainer.innerHTML = '';
+            
+            if (!query) {
+                resultsContainer.style.display = 'none';
+                return;
+            }
+            
+            const filteredResults = searchData.filter(item => 
+                item.title.toLowerCase().includes(query.toLowerCase()) || 
+                item.category.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            if (filteredResults.length === 0) {
+                const noResults = document.createElement('div');
+                noResults.className = 'search-result-item';
+                noResults.textContent = 'No results found';
+                resultsContainer.appendChild(noResults);
+            } else {
+                filteredResults.forEach(result => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'search-result-item';
+                    resultItem.innerHTML = `
+                        <div class="font-bold">${highlightText(result.title, query)}</div>
+                        <div class="text-sm text-black-500 dark:text-black-400">${highlightText(result.category, query)}</div>
+                    `;
+                    resultItem.addEventListener('click', () => {
+                        window.location.href = result.link;
+                    });
+                    resultsContainer.appendChild(resultItem);
+                });
+            }
+            
+            resultsContainer.style.display = 'block';
+        }
+        
+        // Desktop search
+        const searchForm = document.getElementById('search-form');
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+        
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (searchInput.value.trim()) {
+                window.location.href = `materials.html?search=${encodeURIComponent(searchInput.value)}`;
+            }
+        });
+        
+        searchInput.addEventListener('input', () => {
+            displaySearchResults(searchInput.value, searchResults, searchInput);
+        });
+        
+        searchInput.addEventListener('focus', () => {
+            if (searchInput.value) {
+                displaySearchResults(searchInput.value, searchResults, searchInput);
+            }
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!searchForm.contains(e.target)) {
+                searchResults.style.display = 'none';
+            }
+        });
+        
+        // Mobile search
+        const mobileSearchForm = document.getElementById('mobile-search-form');
+        const mobileSearchInput = document.getElementById('mobile-search-input');
+        const mobileSearchResults = document.getElementById('mobile-search-results');
+        
+        mobileSearchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (mobileSearchInput.value.trim()) {
+                window.location.href = `materials.html?search=${encodeURIComponent(mobileSearchInput.value)}`;
+            }
+        });
+        
+        mobileSearchInput.addEventListener('input', () => {
+            displaySearchResults(mobileSearchInput.value, mobileSearchResults, mobileSearchInput);
+        });
+        
+        mobileSearchInput.addEventListener('focus', () => {
+            if (mobileSearchInput.value) {
+                displaySearchResults(mobileSearchInput.value, mobileSearchResults, mobileSearchInput);
+            }
+        });
+        
+        // Check for search query in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('search');
+        if (searchQuery) {
+            searchInput.value = searchQuery;
+            mobileSearchInput.value = searchQuery;
+        }
+
+        // Close mobile menu when a link is clicked
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuBtn.classList.remove('active');
+    });
+});
+
+// Close mobile menu when clicking on dropdown chevron
+document.querySelectorAll('#mobile-menu button').forEach(button => {
+    button.addEventListener('click', (e) => {
+        // Only close if clicking the chevron (not the button text)
+        if (e.target.classList.contains('fa-chevron-down')) {
+            mobileMenu.classList.add('hidden');
+            menuBtn.classList.remove('active');
+        }
+    });
+});
+    </script>
+</body>
+</html>

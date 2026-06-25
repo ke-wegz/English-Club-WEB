@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="img/favicon.ico" type="image/favicon.ico-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title_materials">Learning Materials | AHU English Club</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="javascript" href="script.js">
+<script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                colors: {
+                    primary: '#10B981',   // Mint green
+                    secondary: '#D97706', // Warm amber
+                    accent: '#0F172A',    // Charcoal text
+                    purple: '#064E3B',    // Deep emerald
+                    darkpurple: '#064E3B',
+                },
+                animation: {
+                    'bounce-slow': 'bounce 2s infinite',
+                    'float': 'float 3s ease-in-out infinite',
+                },
+                keyframes: {
+                    float: {
+                        '0%, 100%': { transform: 'translateY(0)' },
+                        '50%': { transform: 'translateY(-10px)' },
+                    }
+                }
+            }
+        }
+    }
+</script>
+ 
+</head>
+<body class="dark:bg-darkmode dark:text-light">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md dark:bg-card-dark sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img src="img/favicon.png" height="60px" width="80px"></img>
+                    <span class="text-xl font-bold text-accent dark:text-purple">AHU English Club</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="home">Home</a>
+                    <div class="relative group">
+                        <button class="nav-link text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium flex items-center">
+                            <span data-i18n="materials">Materials</span> <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white dark:bg-card-dark rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <a href="#grammar" class="block px-4 py-2 text-black-700 hover:bg-primary hover:text-white dark:text-black-300 dark:hover:bg-purple" data-i18n="grammar">Grammar</a>
+                            <a href="#vocabulary" class="block px-4 py-2 text-black-700 hover:bg-primary hover:text-white dark:text-black-300 dark:hover:bg-purple" data-i18n="vocabulary">Vocabulary</a>
+                            <a href="#pronunciation" class="block px-4 py-2 text-black-700 hover:bg-primary hover:text-white dark:text-black-300 dark:hover:bg-purple" data-i18n="pronunciation">Pronunciation</a>
+                        </div>
+                    </div>
+                    <a href="index.html#about" class="nav-link text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="about">About</a>
+                    <a href="index.html#events" class="nav-link text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="events">Events</a>
+                    <a href="index.html#contact" class="nav-link text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="contact">Contact</a>
+                    </a>
+
+                     <!-- Language Toggle -->
+                    <button id="language-toggle" class="language-toggle">
+                        <span class="en-text">EN</span>
+                        <i class="fas fa-exchange-alt"></i>
+                        <span class="ar-text">AR</span>
+                    </button>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <div class="flex items-center">
+                        <span class="mr-2 text-sm text-black-600 dark:text-black-300"><i class="fas fa-sun"></i></span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none">
+                            <input type="checkbox" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                        <span class="text-sm text-black-600 dark:text-black-300"><i class="fas fa-moon"></i></span>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="hamburger-menu text-black-700 dark:text-black-300 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-card-dark shadow-lg">
+            <div class="container mx-auto px-4 py-2">
+                <a href="index.html" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="home">Home</a>
+                <div class="py-2">
+                    <a href="materials.html">
+                     <button class="flex items-center justify-between w-full text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium">
+                        <span data-i18n="materials">Materials</span>
+                     </button>
+                    </a>
+                    <div class="pl-4 mt-1 hidden">
+                        <a href="#grammar" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple" data-i18n="grammar">Grammar</a>
+                        <a href="#vocabulary" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple" data-i18n="vocabulary">Vocabulary</a>
+                        <a href="#pronunciation" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple" data-i18n="pronunciation">Pronunciation</a>
+                    </div>
+                </div>
+                <a href="about.html" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="about">About</a>
+                <a href="events.html" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="events">Events</a>
+                <a href="contact.html" class="block py-2 text-black-700 hover:text-accent dark:text-black-300 dark:hover:text-purple font-medium" data-i18n="contact">Contact</a>
+               
+               <div class="flex items-center justify-between py-2">
+                    <span class="text-black-700 dark:text-black-300" data-i18n="language">Language:</span>
+                    <button id="mobile-language-toggle" class="language-toggle">
+                        <span class="en-text">EN</span>
+                        <i class="fas fa-exchange-alt"></i>
+                        <span class="ar-text">AR</span>
+                    </button>
+                </div>
+               
+                <div class="flex items-center justify-between py-2">
+                    <span class="text-black-700 dark:text-black-300" data-i18n="theme">Theme:</span>
+                    <div class="flex items-center">
+                        <span class="mr-2 text-sm text-black-600 dark:text-black-300"><i class="fas fa-sun"></i></span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none">
+                            <input type="checkbox" id="toggle-mobile" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="toggle-mobile" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                        <span class="text-sm text-black-600 dark:text-black-300"><i class="fas fa-moon"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Materials Header -->
+    <header class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4" data-i18n="materials_title">Learning Materials</h1>
+            <p class="text-xl max-w-3xl mx-auto" data-i18n="materials_text">Explore our comprehensive collection of English learning resources. Improve your grammar, expand your vocabulary, and perfect your pronunciation.</p>
+        </div>
+    </header>
+
+    <!-- Materials Navigation Tabs -->
+    <div class="sticky top-16 bg-white dark:bg-card-dark shadow-sm z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex overflow-x-auto scrollbar-hide">
+                <a href="#grammar" class="tab-button px-6 py-4 font-medium text-black-700 dark:text-black-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">
+                    <i class="fas fa-book mr-2"></i> <span data-i18n="grammar">Grammar</span>
+                </a>
+                <a href="#vocabulary" class="tab-button px-6 py-4 font-medium text-black-700 dark:text-black-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">
+                    <i class="fas fa-spell-check mr-2"></i> <span data-i18n="vocabulary">Vocabulary</span>
+                </a>
+                <a href="#pronunciation" class="tab-button px-6 py-4 font-medium text-black-700 dark:text-black-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300">
+                    <i class="fas fa-microphone-alt mr-2"></i> <span data-i18n="pronunciation">Pronunciation</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Grammar Section -->
+        <section id="grammar" class="material-category mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-12 h-12 rounded-full bg-primary bg-opacity-20 text-primary flex items-center justify-center mr-4">
+                    <i class="fas fa-book text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-accent dark:text-purple" data-i18n="grammar_resources">Grammar Resources</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Grammar Resource 1 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-primary text-white text-xs px-3 py-1 rounded-full" data-i18n="beginner">Beginner</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="grammar">PDF + Exercises</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="grammar1_title"></h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="grammar1_desc">Comprehensive guide to all 12 English tenses with clear explanations, timelines, and practice exercises.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-black-500 dark:text-black-400"><i class="fas fa-file-pdf mr-1"></i> <span data-i18n="grammar1_pages">15 pages</span></span>
+                            <a href="https://drive.google.com/uc?export=download&id=1uq41gcBm4LyBAiJz7DTS5pfTxDTUMkzG" target="A" class="text-accent dark:text-purple font-medium hover:underline flex items-center">
+                                <span data-i18n="download">Download</span> <i class="fas fa-download ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grammar Resource 2 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-secondary text-white text-xs px-3 py-1 rounded-full" data-i18n="intermediate">Intermediate</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="grammar">Interactive</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="grammar2_title">Conditionals Explained</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="grammar2_desc">Master the zero, first, second, third, and mixed conditionals with our interactive exercises.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-black-500 dark:text-black-400"><i class="fas fa-file-pdf mr-1"></i> <span data-i18n="grammar2_pages">Web Module</span></span>
+                            <a href="https://drive.google.com/uc?export=download&id=180HqxeNkhyeWUyK4B_De2XDdRIScCWfb" target="A" class="text-accent dark:text-purple font-medium hover:underline flex items-center">
+                                <span data-i18n="download">Download</span> <i class="fas fa-download ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grammar Resource 3 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-purple text-white text-xs px-3 py-1 rounded-full" data-i18n="advanced">Advanced</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="grammar">Video Lesson</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="grammar3_title">Subjunctive Mood</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="grammar3_desc">Learn how to use the subjunctive mood correctly in formal English with practical examples.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-black-500 dark:text-black-400"><i class="fas fa-file-pdf mr-1"></i> <span data-i18n="grammar3_pages">Web Module</span></span>
+                            <a href="https://drive.google.com/uc?export=download&id=1BmMutD1s_iQt5vpAVsLipqaotV_d4V6k" target="A" class="text-accent dark:text-purple font-medium hover:underline flex items-center">
+                                <span data-i18n="download">Download</span> <i class="fas fa-download ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grammar Resource 4 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-purple text-white text-xs px-3 py-1 rounded-full" data-i18n="beginner">Advanced</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="grammar">Video Lesson</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="grammar4_title">Subjunctive Mood</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="grammar4_desc">Learn how to use the subjunctive mood correctly in formal English with practical examples.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-black-500 dark:text-black-400"><i class="fas fa-file-pdf mr-1"></i> <span data-i18n="grammar4_pages">Web Module</span></span>
+                            <a href="https://drive.google.com/uc?export=download&id=1hdvSVItxsW23NL_fRkz2u1QWX65tKMMU" target="A" class="text-accent dark:text-purple font-medium hover:underline flex items-center">
+                                <span data-i18n="download">Download</span> <i class="fas fa-download ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grammar Resource 5 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-purple text-white text-xs px-3 py-1 rounded-full" data-i18n="advanced">Advanced</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="grammar">Video Lesson</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="grammar5_title">Subjunctive Mood</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="grammar5_desc">Learn how to use the subjunctive mood correctly in formal English with practical examples.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-black-500 dark:text-black-400"><i class="fas fa-file-pdf mr-1"></i> <span data-i18n="grammar5_pages">Web Module</span></span>
+                            <a href="https://drive.google.com/uc?export=download&id=15vMpRRwjP-QoseclKGjS43ft7xnhJCCL" target="A" class="text-accent dark:text-purple font-medium hover:underline flex items-center">
+                                <span data-i18n="download">Download</span> <i class="fas fa-download ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grammar Resource 6 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-purple text-white text-xs px-3 py-1 rounded-full" data-i18n="beginner">Advanced</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="grammar">Video Lesson</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="grammar6_title">Subjunctive Mood</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="grammar6_desc">Learn how to use the subjunctive mood correctly in formal English with practical examples.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-black-500 dark:text-black-400"><i class="fas fa-file-pdf mr-1"></i> <span data-i18n="grammar6_pages">Web Module</span></span>
+                            <a href="https://drive.google.com/uc?export=download&id=1TjX8bpAmTzgrbwKxmH-mtw0Yz-avLE1H" target="A" class="text-accent dark:text-purple font-medium hover:underline flex items-center">
+                                <span data-i18n="download">Download</span> <i class="fas fa-download ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Vocabulary Section -->
+        <section id="vocabulary" class="material-category mb-20">
+            <div class="flex items-center mb-8">
+                <div class="w-12 h-12 rounded-full bg-primary bg-opacity-20 text-primary flex items-center justify-center mr-4">
+                    <i class="fas fa-spell-check text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-accent dark:text-purple" data-i18n="vocabulary_resources">Vocabulary Resources</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Vocabulary Resource 1 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-primary text-white text-xs px-3 py-1 rounded-full" data-i18n="general">General</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="vocab">Flashcards</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="vocab1_title">500 Most Common Words</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="vocab1_desc">Essential vocabulary for everyday communication, organized by frequency and category.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-black-500 dark:text-black-400"><i class="fas fa-file-pdf mr-1"></i> <span data-i18n="vocab1_pages">240 pages</span></span>
+                            <a href="https://drive.google.com/uc?export=download&id=1tGvL5skJLTtiRJvy8peVDpui_lUjJKcu" target="A" class="text-accent dark:text-purple font-medium hover:underline flex items-center">
+                                <span data-i18n="download">Download</span> <i class="fas fa-download ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vocabulary Resource 2 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-secondary text-white text-xs px-3 py-1 rounded-full" data-i18n="academic">Academic</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="vocab">PDF</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="vocab2_title">Academic Word List (AWL)</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="vocab2_desc">570 word families that frequently appear in academic texts across various disciplines.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-black-500 dark:text-black-400"><i class="fas fa-file-pdf mr-1"></i> <span data-i18n="vocab2_pages">25 pages</span></span>
+                            <a href="https://drive.google.com/uc?export=download&id=1BQdn6GaNuUx2PRc4gAw5FWmaCcMLvaUp" target="A" class="text-accent dark:text-purple font-medium hover:underline flex items-center">
+                                <span data-i18n="download">Download</span> <i class="fas fa-download ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vocabulary Resource 3 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-purple text-white text-xs px-3 py-1 rounded-full" data-i18n="academic">Business</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="vocab">Interactive</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="vocab3_title">Business English Vocabulary</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="vocab3_desc">Key terms and phrases for meetings, negotiations, presentations, and corporate communication.</p>
+                       <div class="flex justify-between items-center">
+                            <span class="text-sm text-black-500 dark:text-black-400"><i class="fas fa-file-pdf mr-1"></i> <span data-i18n="vocab3_pages"></span></span>
+                            <a href="https://drive.google.com/uc?export=download&id=1Pqg-uirtLyTqkfmMGVVqK7HYUli0YbZw" target="A" class="text-accent dark:text-purple font-medium hover:underline flex items-center">
+                                <span data-i18n="download">Download</span> <i class="fas fa-download ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vocabulary Resource 4 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-primary text-white text-xs px-3 py-1 rounded-full" data-i18n="general">general</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="vocab">Interactive</span>                       
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="vocab4_title">IELTS Topic Vocabulary</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="vocab4_desc">Specialized vocabulary organized by common IELTS topics (education, environment, technology, etc.)</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-black-500 dark:text-black-400"><i class="fas fa-file-pdf mr-1"></i> <span data-i18n="vocab4_pages">25 pages</span></span>
+                            <a href="https://drive.google.com/uc?export=download&id=1fVZc8r3XptEHpKOeV8ObytfrD9BL4exk" target="A" class="text-accent dark:text-purple font-medium hover:underline flex items-center">
+                                <span data-i18n="download">Download</span> <i class="fas fa-download ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vocabulary Resource 5 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-secondary text-white text-xs px-3 py-1 rounded-full" data-i18n="visual">Idioms</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="vocab">Video Series</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="vocab5_title">Common English Idioms</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="vocab5_desc">Learn 100+ frequently used idioms with explanations and examples in context.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-black-500 dark:text-black-400"><i class="fas fa-file-pdf mr-1"></i> <span data-i18n="vocab5_pages">25 pages</span></span>
+                            <a href="https://drive.google.com/uc?export=download&id=1Z4AwWTobItb-C9m_TkkLXMvuJsJBWmY6" target="A" class="text-accent dark:text-purple font-medium hover:underline flex items-center">
+                                <span data-i18n="download">Download</span> <i class="fas fa-download ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vocabulary Resource 6 -->
+                <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-purple text-white text-xs px-3 py-1 rounded-full" data-i18n="advanced">Thesaurus</span>
+                            <span class="text-black-500 dark:text-black-400 text-sm ml-2" data-i18n="vocab">Interactive</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="vocab6_title">Synonyms & Antonyms</h3>
+                        <p class="text-black-600 dark:text-black-300 mb-4" data-i18n="vocab6_desc">Expand your vocabulary by learning word relationships and alternatives for common terms.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-black-500 dark:text-black-400"><i class="fas fa-file-pdf mr-1"></i> <span data-i18n="vocab6_pages">25 pages</span></span>
+                            <a href="https://drive.google.com/uc?export=download&id=1bUz6uOfQQ59YtMWZVaB5Ax1-7ZqxPVP4" target="A" class="text-accent dark:text-purple font-medium hover:underline flex items-center">
+                                <span data-i18n="download">Download</span> <i class="fas fa-download ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+              <!-- Pronunciation Section -->
+              <section id="pronunciation" class="material-category">
+                <div class="flex items-center mb-8">
+                    <div class="w-12 h-12 rounded-full bg-purple bg-opacity-20 text-purple flex items-center justify-center mr-4">
+                        <i class="fas fa-microphone-alt text-xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-accent dark:text-purple" data-i18n="pronunciation_resources">Pronunciation Resources</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Pronunciation Resource 1 -->
+                    <div class="bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md transition-all duration-300 card-hover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+
+                            </div>
+                            <h3 class="text-xl font-bold mb-3" data-i18n="pron1_title">International Phonetic Alphabet</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4" data-i18n="pron1_desc">Complete guide to IPA symbols for English sounds with audio examples and mouth diagrams.</p>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-accent dark:text-purple font-medium hover:underline flex items-center">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="img/favicon.png" height="60px" width="80px"></img>
+                        <span class="text-xl font-bold">AHU English Club</span>
+                    </div>
+                    <p class="text-black-400" data-i18n="footer_desc">Improving English skills through community, resources, and cultural exchange since 2010.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4" data-i18n="quick_links">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-black-400 hover:text-primary transition duration-300" data-i18n="home">Home</a></li>
+                        <li><a href="#grammar" class="text-black-400 hover:text-primary transition duration-300" data-i18n="grammar">Grammar</a></li>
+                        <li><a href="#vocabulary" class="text-black-400 hover:text-primary transition duration-300" data-i18n="vocabulary">Vocabulary</a></li>
+                        <li><a href="#pronunciation" class="text-black-400 hover:text-primary transition duration-300" data-i18n="pronunciation">Pronunciation</a></li>
+                        <li><a href="index.html#contact" class="text-black-400 hover:text-primary transition duration-300" data-i18n="contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4" data-i18n="resources">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-black-400 hover:text-primary transition duration-300" data-i18n="learning_materials">Learning Materials</a></li>
+                        <li><a href="#" class="text-black-400 hover:text-primary transition duration-300" data-i18n="pronunciation_guide">Pronunciation Guide</a></li>
+                        <li><a href="#" class="text-black-400 hover:text-primary transition duration-300" data-i18n="recommended_books">Recommended Books</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-black-400 mb-4 md:mb-0">© 2023 AHU English Club. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Dark Mode Toggle
+        const toggle = document.getElementById('toggle');
+        const toggleMobile = document.getElementById('toggle-mobile');
+        const html = document.documentElement;
+        
+        // Check for saved user preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            html.classList.add('dark');
+            toggle.checked = true;
+            if (toggleMobile) toggleMobile.checked = true;
+        }
+        
+        // Toggle dark mode
+        function toggleDarkMode() {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('darkMode', isDark);
+        }
+        
+        toggle.addEventListener('change', toggleDarkMode);
+        if (toggleMobile) toggleMobile.addEventListener('change', toggleDarkMode);
+        
+        // Translations dictionary
+        const translations = {
+            en: {
+                "title_materials": "Learning Materials | AHU English Club",
+                "home": "Home",
+                "materials": "Materials",
+                "grammar": "Grammar",
+                "vocabulary": "Vocabulary",
+                "pronunciation": "Pronunciation",
+                "about": "About",
+                "events": "Events",
+                "contact": "Contact",
+                "vocab": "Vocabulary",
+                "visual":"visual",
+                "materials_title": "Learning Materials",
+                "materials_text": "Explore our comprehensive collection of English learning resources. Improve your grammar, expand your vocabulary, and perfect your pronunciation.",
+                "grammar_resources": "Grammar Resources",
+                "beginner": "Beginner",
+                "pdf_exercises": "PDF + Exercises",
+                "grammar1_title": "The infographic guide to grammar",
+                "grammar1_desc": "Comprehensive guide to all general English rules with clear explanations, and practice exercises.",
+                "grammar1_pages": "132 pages",
+                "download": "Download",
+                "intermediate": "Intermediate",
+                "interactive": "Interactive",
+                "interactive": "Grammar",
+                "grammar2_title": "Perfect english grammar",
+                "grammar2_desc": "sentences, lists and charts, and a glossary explaining some of the specialized language of grammar and linguistics.",
+                "grammar2_pages": "208 pages",
+                "grammar4_title": "EFE Visual grammar guide",
+                "grammar4_desc": "English for everyone visual grammar guide.",
+                "grammar4_pages": "145 pages",
+                "grammar5_title": "EFE grammar guide",
+                "grammar5_desc": "English for everyone grammar guide.",
+                "grammar5_pages": "362 pages",
+                "grammar6_title": "EFE practice guide for grammar",
+                "grammar6_desc": "English for everyone practice book for grammar.",
+                "grammar6_pages": "320 pages",
+                "access": "Access",
+                "advanced": "Advanced",
+                "video_lesson": "Video Lesson",
+                "grammar3_title": "Just enough grammar illustrated",
+                "grammar3_desc": "The book is designed to give learners of English a basic grammar foundation.",
+                "grammar3_pages": "145 pages",
+                "watch": "Watch",
+                "cheat_sheet": "Cheat Sheet",
+                "exercises": "Exercises",
+                "practice": "Practice",
+                "reference_guide": "Reference Guide",
+                "view": "View",
+                "view_all_grammar": "View All Grammar Resources",
+                "vocabulary_resources": "Vocabulary Resources",
+                "general": "General",
+                "flashcards": "Flashcards",
+                "vocab1_title": "EFE 5 Words a day",
+                "vocab1_desc": "Essential vocabulary for everyday communication, organized by frequency and category.",
+                "vocab1_pages": "240 pages",
+                "study": "Study",
+                "academic": "Academic",
+                "pdf": "PDF",
+                "vocab2_title": "EFE Phrasal verbs",
+                "vocab2_desc": "phrasal verbs that frequently appear in everday speech across various disciplines.",
+                "vocab2_pages": "256 pages",
+                "business": "Business",
+                "vocab3_title": "EFE idioms",
+                "vocab3_desc": "Key idioms present in advanced communication.",
+                "vocab3_pages":"256 pages",
+                "vocab4_title": "EFE junior dictionary",
+                "vocab4_desc": "a junior dictionary to help you out find english meanings of words.",
+                "vocab4_pages": "136 pages",
+                "idioms": "Idioms",
+                "video_series": "Video Series",
+                "vocab5_title": "EFE illustrated dictionary",
+                "vocab5_desc": "an illustarted dictionary for visual learners.",
+                "vocab5_pages": "406 pages",
+                "thesaurus": "Thesaurus",
+                "vocab6_title": "EFE vocabulary builder.",
+                "vocab6_desc": "Expand your vocabulary by learning word relationships and alternatives for common terms.",
+                "vocab6_pages": "362 pages",
+                "explore": "Explore",
+                "view_all_vocabulary": "View All Vocabulary Resources",
+                "pronunciation_resources": "Pronunciation Resources",
+                "ipa_guide": "IPA Guide",
+                "reference": "Reference",
+                "pron1_title": "Nothing here for now",
+                "pron1_desc": ":<",
+                "pron1_sounds": "44 sounds",
+                "listen": "Listen",
+                "minimal_pairs": "Minimal Pairs",
+                "pron2_title": "Tricky Sound Pairs",
+                "pron2_desc": "Practice distinguishing between similar sounds (/l/ vs /r/, /θ/ vs /ð/, etc.) with audio exercises.",
+                "pron2_pairs": "15 pairs",
+                "accent_training": "Accent Training",
+                "video_course": "Video Course",
+                "pron3_title": "American Accent Training",
+                "pron3_desc": "12-part video series covering stress, rhythm, intonation, and key pronunciation features.",
+                "pron3_lessons": "12 lessons",
+                "tongue_twisters": "Tongue Twisters",
+                "fun_practice": "Fun Practice",
+                "pron4_title": "Pronunciation Challenges",
+                "pron4_desc": "Collection of tongue twisters organized by target sounds for fun pronunciation practice.",
+                "pron4_count": "50+",
+                "try": "Try",
+                "connected_speech": "Connected Speech",
+                "audio_guide": "Audio Guide",
+                "pron5_title": "Natural Speech Patterns",
+                "pron5_desc": "Learn how words connect in natural speech through linking, reduction, and assimilation.",
+                "pron5_patterns": "8 patterns",
+                "recording_tool": "Recording Tool",
+                "pron6_title": "Pronunciation Checker",
+                "pron6_desc": "Record your speech and compare it to native speaker models with visual feedback.",
+                "web_tool": "Web Tool",
+                "try_now": "Try Now",
+                "view_all_pronunciation": "View All Pronunciation Resources",
+                "footer_desc": "Improving English skills through community, resources, and cultural exchange since 2010.",
+                "quick_links": "Quick Links",
+                "resources": "Resources",
+                "learning_materials": "Learning Materials",
+                "test_preparation": "Test Preparation",
+                "pronunciation_guide": "Pronunciation Guide",
+                "writing_tips": "Writing Tips",
+                "recommended_books": "Recommended Books",
+                "newsletter": "Newsletter",
+                "newsletter_text": "Subscribe to get updates on events and learning resources.",
+                "privacy_policy": "Privacy Policy",
+                "terms": "Terms of Service",
+                "sitemap": "Sitemap",
+                "language": "Language",
+                "theme": "Theme"
+            },
+            ar: {
+                "title_materials": "مواد التعلم | نادي اللغة الإنجليزية بجامعة AHU",
+                "home": "الرئيسية",
+                "materials": "المواد",
+                "grammar": "قواعد اللغة",
+                "vocabulary": "المفردات",
+                "pronunciation": "النطق",
+                "about": "من نحن",
+                "events": "الفعاليات",
+                "contact": "اتصل بنا",
+                "materials_title": "مواد التعلم",
+                "materials_text": "استكشف مجموعتنا الشاملة من موارد تعلم اللغة الإنجليزية. حسن قواعدك، وسع مفرداتك، وأتقن نطقك.",
+                "grammar_resources": "موارد القواعد",
+                "beginner": "مبتدئ",
+                "pdf_exercises": "PDF + تمارين",
+                "grammar1_title": "الدليل المصور للقواعد",
+                "grammar1_desc": "دليل كامل لقواعد اللغة الإنجليزية مع شرح وأمثلة.",
+                "grammar1_pages": "132 صفحة",
+                "download": "تحميل",
+                "intermediate": "متوسط",
+                "interactive": "تفاعلي",
+                "grammar2_title": "قواعد إنجليزية مثالية",
+                "grammar2_desc": "جمل وقوائم ومخططات، ومعجم يشرح بعض مصطلحات القواعد واللغويات المتخصصة.",
+                "grammar2_pages": "وحدة ويب",
+                "access": "الدخول",
+                "advanced": "متقدم",
+                "video_lesson": "درس فيديو",
+                "grammar3_title": "قدر كافٍ من القواعد مصوّر",
+                "grammar3_desc": "صُمم الكتاب لمنح متعلمي الإنجليزية أساسًا في القواعد.",
+                "grammar3_duration": "25 دقيقة",
+                "watch": "مشاهدة",
+                "cheat_sheet": "ورقة غش",
+"grammar4_title": "دليل قواعد اللغة البصرية من EFE",
+"grammar4_desc": "دليل بصري لقواعد اللغة الإنجليزية من English for Everyone.",
+"grammar4_pages": "145 صفحة",
+
+"grammar5_title": "دليل قواعد اللغة من EFE",
+"grammar5_desc": "دليل قواعد اللغة الإنجليزية من English for Everyone.",
+"grammar5_pages": "362 صفحة",
+
+"grammar6_title": "دليل الممارسة لقواعد اللغة من EFE",
+"grammar6_desc": "كتاب الممارسة لقواعد اللغة الإنجليزية من English for Everyone.",
+"grammar6_pages": "320 صفحة",
+                "practice": "تمرن",
+                "reference_guide": "دليل مرجعي",
+                "view": "عرض",
+                "view_all_grammar": "عرض جميع موارد القواعد",
+                "vocabulary_resources": "موارد المفردات",
+                "general": "عام",
+                "flashcards": "بطاقات تعليمية",
+                "vocab1_title": "EFE 5 كلمات يوميًا",
+                "vocab1_desc": "مفردات أساسية للتواصل اليومي، منظمة حسب التردد والفئة.",
+                "vocab1_sets": "5 مجموعات",
+                "study": "ادرس",
+                "academic": "أكاديمي",
+                "pdf": "PDF",
+                "vocab2_title": "EFE الأفعال المركبة",
+                "vocab2_desc": "أفعال مركبة تظهر كثيرًا في الكلام اليومي عبر تخصصات مختلفة.",
+                "vocab2_pages": "25 صفحة",
+                "business": "أعمال",
+                "vocab3_title": "EFE التعابير",
+                "vocab3_desc": "تعابير أساسية مستخدمة في التواصل المتقدم.",
+                "vocab4_title": "EFE قاموس الأطفال",
+                "vocab4_desc": "قاموس مبسّط يساعدك على إيجاد معاني الكلمات الإنجليزية.",
+                "vocab4_topics": "18 موضوعًا",
+                "idioms": "تعابير",
+                "video_series": "سلسلة فيديو",
+                "vocab5_title": "EFE قاموس مصور",
+                "vocab5_desc": "قاموس مصور للمتعلمين البصريين.",
+                "vocab5_videos": "10 فيديوهات",
+                "thesaurus": "مسرد",
+                "vocab6_title": "EFE مُنمّي المفردات",
+                "vocab6_desc": "وسع مفرداتك من خلال تعلم علاقات الكلمات وبدائل المصطلحات الشائعة.",
+                "vocab6_words": "500+ كلمة",
+                "explore": "استكشف",
+                "view_all_vocabulary": "عرض جميع موارد المفردات",
+                "pronunciation_resources": "موارد النطق",
+                "ipa_guide": "دليل IPA",
+                "reference": "مرجع",
+                "pron1_title": "لا يوجد شيء هنا",
+                "pron1_desc": ":<",
+                "pron1_sounds": "44 صوتًا",
+                "listen": "استمع",
+                "minimal_pairs": "أزواج متشابهة",
+                "pron2_title": "أزواج الأصوات الصعبة",
+                "pron2_desc": "تمرن على التمييز بين الأصوات المتشابهة (/l/ مقابل /r/، /θ/ مقابل /ð/، إلخ.) مع تمارين صوتية.",
+                "pron2_pairs": "15 زوجًا",
+                "accent_training": "تدريب اللكنة",
+                "video_course": "دورة فيديو",
+                "pron3_title": "تدريب اللكنة الأمريكية",
+                "pron3_desc": "سلسلة فيديو مكونة من 12 جزءًا تغطي النبر والإيقاع والتنغيم وميزات النطق الرئيسية.",
+                "pron3_lessons": "12 درسًا",
+                "tongue_twisters": "ألغاز اللسان",
+                "fun_practice": "تمرين ممتع",
+                "pron4_title": "تحديات النطق",
+                "pron4_desc": "مجموعة من ألغاز اللسان المنظمة حسب الأصوات المستهدفة لتمرين نطق ممتع.",
+                "pron4_count": "50+",
+                "try": "جرب",
+                "connected_speech": "الكلام المتصل",
+                "audio_guide": "دليل صوتي",
+                "pron5_title": "أنماط الكلام الطبيعي",
+                "pron5_desc": "تعلم كيفية اتصال الكلمات في الكلام الطبيعي من خلال الربط والاختزال والاستيعاب.",
+                "pron5_patterns": "8 أنماط",
+                "recording_tool": "أداة تسجيل",
+                "pron6_title": "مدقق النطق",
+                "pron6_desc": "سجل كلامك وقارنه بنماذج المتحدثين الأصليين مع ملاحظات مرئية.",
+                "web_tool": "أداة ويب",
+                "try_now": "جرب الآن",
+                "view_all_pronunciation": "عرض جميع موارد النطق",
+                "footer_desc": "تحسين مهارات اللغة الإنجليزية من خلال المجتمع والموارد وتبادل الثقافات منذ عام 2010.",
+                "quick_links": "روابط سريعة",
+                "resources": "الموارد",
+                "learning_materials": "مواد التعلم",
+                "test_preparation": "تحضير الاختبارات",
+                "pronunciation_guide": "دليل النطق",
+                "writing_tips": "نصائح الكتابة",
+                "recommended_books": "كتب موصى بها",
+                "newsletter": "النشرة الإخبارية",
+                "newsletter_text": "اشترك للحصول على تحديثات حول الفعاليات وموارد التعلم.",
+                "privacy_policy": "سياسة الخصوصية",
+                "terms": "شروط الخدمة",
+                "sitemap": "خريطة الموقع",
+                "language": "اللغة",
+                "theme": "السمة"
+            }
+        };
+
+        // Apply consistent colors to difficulty badges
+        function applyDifficultyBadgeStyles() {
+            const difficultyMap = [
+                { key: 'beginner', textMatches: ['beginner'], classes: ['bg-green-600', 'text-white'] },
+                { key: 'intermediate', textMatches: ['intermediate'], classes: ['bg-yellow-500', 'text-white'] },
+                { key: 'advanced', textMatches: ['advanced'], classes: ['bg-red-600', 'text-white'] },
+                { key: 'general', textMatches: ['general'], classes: ['bg-green-600', 'text-white'] },
+                { key: 'academic', textMatches: ['academic'], classes: ['bg-red-600', 'text-white'] },
+            ];
+
+            const candidates = document.querySelectorAll('span[data-i18n], span');
+            candidates.forEach(el => {
+                const dataKey = (el.getAttribute('data-i18n') || '').toLowerCase();
+                const text = (el.textContent || '').trim().toLowerCase();
+
+                const match = difficultyMap.find(d => d.key === dataKey || d.textMatches.some(t => text.includes(t)));
+                if (!match) return;
+
+                // Remove any previous bg-* and text-* that might conflict
+                el.classList.forEach(cls => {
+                    if (cls.startsWith('bg-') || (cls.startsWith('text-') && (cls.includes('white') || cls.includes('black') || cls.includes('red') || cls.includes('yellow') || cls.includes('green') || cls.includes('purple') || cls.includes('secondary') || cls.includes('primary')))) {
+                        el.classList.remove(cls);
+                    }
+                });
+
+                // Keep size/shape utilities; add our colors
+                match.classes.forEach(cls => el.classList.add(cls));
+                // Ensure pill look remains
+                el.classList.add('text-xs', 'px-3', 'py-1', 'rounded-full');
+            });
+        }
+
+        // Language Toggle
+        const languageToggle = document.getElementById('language-toggle');
+        const mobileLanguageToggle = document.getElementById('mobile-language-toggle');
+        
+        function toggleLanguage() {
+            const currentLang = html.getAttribute('lang') || 'en';
+            const newLang = currentLang === 'en' ? 'ar' : 'en';
+            
+            html.setAttribute('lang', newLang);
+            localStorage.setItem('preferredLanguage', newLang);
+            
+            // Update UI elements
+            updateUITexts(newLang);
+            
+            // Load Arabic font if needed
+            if (newLang === 'ar') {
+                const link = document.createElement('link');
+                link.href = 'https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap';
+                link.rel = 'stylesheet';
+                document.head.appendChild(link);
+            }
+        }
+        
+        function updateUITexts(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const localized = translations[lang] && translations[lang][key];
+                const fallbackEn = translations.en && translations.en[key];
+                if (localized && localized.trim() !== '') {
+                    el.textContent = localized;
+                } else if (fallbackEn) {
+                    el.textContent = fallbackEn;
+                }
+            });
+        }
+        
+        languageToggle.addEventListener('click', toggleLanguage);
+        if (mobileLanguageToggle) {
+            mobileLanguageToggle.addEventListener('click', toggleLanguage);
+        }
+        
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const preferredLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            html.setAttribute('lang', preferredLanguage);
+            updateUITexts(preferredLanguage);
+            applyDifficultyBadgeStyles();
+            
+            // Load Arabic font if needed
+            if (preferredLanguage === 'ar') {
+                const link = document.createElement('link');
+                link.href = 'https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap';
+                link.rel = 'stylesheet';
+                document.head.appendChild(link);
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active tab
+                    document.querySelectorAll('.tab-button').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // Set active tab based on scroll position
+        window.addEventListener('scroll', () => {
+            const grammarSection = document.getElementById('grammar');
+            const vocabularySection = document.getElementById('vocabulary');
+            const pronunciationSection = document.getElementById('pronunciation');
+            
+            const scrollPosition = window.scrollY + 150;
+            
+            document.querySelectorAll('.tab-button').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            if (scrollPosition >= pronunciationSection.offsetTop) {
+                document.querySelector('a[href="#pronunciation"]').classList.add('active');
+            } else if (scrollPosition >= vocabularySection.offsetTop) {
+                document.querySelector('a[href="#vocabulary"]').classList.add('active');
+            } else if (scrollPosition >= grammarSection.offsetTop) {
+                document.querySelector('a[href="#grammar"]').classList.add('active');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuBtn.classList.remove('active');
+    });
+});
+
+// Mobile menu dropdown functionality
+document.querySelectorAll('#mobile-menu button').forEach(button => {
+    button.addEventListener('click', function() {
+        const dropdown = this.nextElementSibling;
+        if (dropdown.classList.contains('hidden')) {
+            dropdown.classList.remove('hidden');
+            this.querySelector('i').classList.remove('fa-chevron-down');
+            this.querySelector('i').classList.add('fa-chevron-up');
+        } else {
+            dropdown.classList.add('hidden');
+            this.querySelector('i').classList.remove('fa-chevron-up');
+            this.querySelector('i').classList.add('fa-chevron-down');
+        }
+    });
+});
+    </script>
+</body>
+</html>
